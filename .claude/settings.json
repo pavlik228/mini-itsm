@@ -12,6 +12,7 @@
       "Bash(docker compose logs:*)"
     ],
     "ask": [
+      "Edit(./CLAUDE.md)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(gh:*)",
@@ -21,6 +22,8 @@
     ],
     "deny": [
       "mcp__computer-use",
+      "Edit(./.claude/**)",
+      "Write(./.claude/**)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",
