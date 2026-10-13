@@ -36,14 +36,16 @@ status VARCHAR(32) NOT NULL, created_at TIMESTAMPTZ NOT NULL.
 
 ## Технические решения
 - Пакеты: dev.miniitsm.ticket.api (контроллер, DTO), .domain (Ticket, TicketStatus, сервис), .persistence (репозиторий).
-- Доступ к БД: Spring Data JDBC
+- Доступ к БД: Spring Data JPA (Hibernate). spring.jpa.open-in-view=false, spring.jpa.hibernate.ddl-auto=validate (схему ведёт только Flyway).
+- Сущность Ticket — обычный класс (@Entity), НЕ record; DTO — records. Сущность не выходит за пределы сервиса, контроллер работает с DTO.
+- id генерирует приложение → сущность реализует Persistable<UUID> (isNew), иначе save() сделает merge с лишним SELECT.
 - DTO и доменные объекты — records.
 - Время — только через инжектируемый java.time.Clock; в тестах фиксированный Clock.
 - UUID генерирует приложение.
 - Ошибки — через @RestControllerAdvice + ProblemDetail.
 
 ## Разрешённые зависимости (других не добавлять без вопроса)
-spring-boot-starter-web, spring-boot-starter-validation, spring-boot-starter-jdbc,
+spring-boot-starter-web, spring-boot-starter-validation, spring-boot-starter-data-jpa,
 flyway-core, flyway-database-postgresql, postgresql (runtime),
 spring-boot-starter-test, spring-boot-testcontainers, testcontainers: postgresql, junit-jupiter.
 
