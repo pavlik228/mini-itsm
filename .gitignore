@@ -1,5 +1,8 @@
 .gradle/
 build/
 .idea/
+.claude/settings.local.json
+.env
+.env.*
 *.iml
 .DS_Store

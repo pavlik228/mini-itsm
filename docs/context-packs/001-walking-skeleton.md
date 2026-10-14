@@ -51,12 +51,12 @@ status VARCHAR(32) NOT NULL, created_at TIMESTAMPTZ NOT NULL.
 - Ошибки — @RestControllerAdvice + ProblemDetail.
 
 ## Разрешённые зависимости (других не добавлять без согласования)
-web, validation, data-jpa, Flyway + поддержка PostgreSQL, драйвер postgresql (runtime),
-test-стартер, spring-boot-testcontainers, Testcontainers PostgreSQL + JUnit 5.
-Точные артефакты для Boot 4 агент сверяет по официальным источникам; итоговый список
-утверждает человек и вписывает сюда:
-- (заполнить после согласования)
-
+- Утверждено (Boot 4.1.1, версии из BOM):
+- implementation: spring-boot-starter-webmvc, spring-boot-starter-validation, spring-boot-starter-data-jpa, spring-boot-starter-flyway, org.flywaydb:flyway-database-postgresql
+- runtimeOnly: org.postgresql:postgresql
+- testImplementation: spring-boot-starter-webmvc-test, spring-boot-testcontainers, org.testcontainers:testcontainers-postgresql, org.testcontainers:testcontainers-junit-jupiter
+- testRuntimeOnly: org.junit.platform:junit-platform-launcher
+- Плагины: org.springframework.boot 4.1.1, io.spring.dependency-management
 ## Тесты (пишутся первыми)
 - Интеграционные (@SpringBootTest + Testcontainers PostgreSQL + MockMvc):
   создание → 201 + Location; чтение созданной → 200 с теми же полями;
