@@ -13,6 +13,7 @@
     ],
     "ask": [
       "Edit(./CLAUDE.md)",
+      "Edit(./.github/**)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(gh:*)",
