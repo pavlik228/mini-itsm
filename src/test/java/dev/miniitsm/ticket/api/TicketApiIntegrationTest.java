@@ -150,6 +150,27 @@ class TicketApiIntegrationTest {
                 .andExpect(jsonPath("$.instance").value("/api/tickets/not-a-uuid"));
     }
 
+    @Test
+    void createWithoutTitleAndRussianAcceptLanguageReturnsEnglishMessage() throws Exception {
+        mockMvc.perform(post("/api/tickets")
+                        .header("Accept-Language", "ru")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors[0].field").value("title"))
+                .andExpect(jsonPath("$.errors[0].message").value("must not be null"));
+    }
+
+    @Test
+    void createWithoutTitleAndWithoutAcceptLanguageReturnsEnglishMessage() throws Exception {
+        mockMvc.perform(post("/api/tickets")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors[0].field").value("title"))
+                .andExpect(jsonPath("$.errors[0].message").value("must not be null"));
+    }
+
     private void expectTitleValidationError(String body) throws Exception {
         mockMvc.perform(post("/api/tickets")
                         .contentType(MediaType.APPLICATION_JSON)
