@@ -5,8 +5,8 @@
 Это фундамент; функциональности ITSM (статусы, SLA, приоритет) здесь НЕТ.
 
 ## Входит в слайс
-1. Gradle-проект (Kotlin DSL, wrapper, toolchain Java 21), Spring Boot 4.x — последний стабильный патч.
-   (Если решено остаться на 3.5 — заменить на «Spring Boot 3.5.x» и поправить зависимости.)
+1. Gradle-проект (Kotlin DSL, toolchain Java 21), Spring Boot 4.x — последний стабильный патч.
+   Gradle wrapper 9.8.1 уже в репозитории — не перегенерировать.
 2. Создание заявки: POST /api/tickets
 3. Чтение заявки: GET /api/tickets/{id}
 4. Миграция Flyway V1 — таблица ticket.
@@ -81,4 +81,5 @@ test-стартер, spring-boot-testcontainers, Testcontainers PostgreSQL + JUn
 - docker compose up -d поднимает PostgreSQL, приложение стартует через ./gradlew bootRun и отвечает на POST/GET.
 
 ## Окружение
-macOS Intel, Docker Desktop (Testcontainers локально), JDK 21 через toolchain (по умолчанию в системе JDK 22).
+macOS 15.8.1 Intel x86_64, Docker Desktop (Testcontainers локально).
+Системный JDK 22; компиляция — toolchain 21 (Temurin 21 установлен). Gradle wrapper 9.8.1.
