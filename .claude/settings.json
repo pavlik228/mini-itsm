@@ -13,6 +13,7 @@
     ],
     "ask": [
       "Edit(./CLAUDE.md)",
+      "Edit(./.github/**)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(gh:*)",
@@ -23,7 +24,6 @@
     "deny": [
       "mcp__computer-use",
       "Edit(./.claude/**)",
-      "Write(./.claude/**)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",

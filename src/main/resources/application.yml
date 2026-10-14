@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: mini-itsm
+  web:
+    locale: en
+    locale-resolver: fixed
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/miniitsm}
+    username: ${DB_USERNAME:miniitsm}
+    password: ${DB_PASSWORD:miniitsm}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate

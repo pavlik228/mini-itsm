@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+
+      - run: ./gradlew build
+
+      - name: Verify tests were executed
+        run: |
+          shopt -s nullglob
+          files=(build/test-results/test/*.xml)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "::error::No test result XML files found in build/test-results/test"
+            echo "Tests executed: no result files" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          total=$(grep -h '<testsuite ' "${files[@]}" \
+            | sed -n 's/.* tests="\([0-9]*\)".*/\1/p' \
+            | awk '{ s += $1 } END { print s + 0 }')
+          echo "Tests executed: ${total}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Tests executed: ${total}"
+          if [ "${total}" -eq 0 ]; then
+            echo "::error::Zero tests executed"
+            exit 1
+          fi
