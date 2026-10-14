@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: mini-itsm
+  datasource:
+    url: jdbc:postgresql://localhost:5432/miniitsm
+    username: miniitsm
+    password: miniitsm
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  mvc:
+    problemdetails:
+      enabled: true
