@@ -38,6 +38,7 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
 @Testcontainers
 class TicketApiIntegrationTest {
 
+    private static final Instant NOW = Instant.parse("2026-10-14T10:15:30.123456789Z");
     private static final String CREATED_AT = "2026-10-14T10:15:30.123456Z";
 
     @Container
@@ -50,7 +51,7 @@ class TicketApiIntegrationTest {
         @Bean
         @Primary
         Clock fixedClock() {
-            return Clock.fixed(Instant.parse(CREATED_AT), ZoneOffset.UTC);
+            return Clock.fixed(NOW, ZoneOffset.UTC);
         }
     }
 
