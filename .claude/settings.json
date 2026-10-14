@@ -23,7 +23,6 @@
     "deny": [
       "mcp__computer-use",
       "Edit(./.claude/**)",
-      "Write(./.claude/**)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)",
