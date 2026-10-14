@@ -1,7 +1,10 @@
-package dev.miniitsm.ticket.domain;
+package dev.miniitsm.ticket.application;
 
 import java.time.Instant;
 import java.util.UUID;
+
+import dev.miniitsm.ticket.domain.Ticket;
+import dev.miniitsm.ticket.domain.TicketStatus;
 
 public record TicketView(UUID id, String title, String description, TicketStatus status, Instant createdAt) {
 

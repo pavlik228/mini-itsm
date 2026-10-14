@@ -3,8 +3,8 @@ package dev.miniitsm.ticket.api;
 import java.net.URI;
 import java.util.UUID;
 
-import dev.miniitsm.ticket.domain.TicketService;
-import dev.miniitsm.ticket.domain.TicketView;
+import dev.miniitsm.ticket.application.TicketService;
+import dev.miniitsm.ticket.application.TicketView;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

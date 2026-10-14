@@ -2,13 +2,10 @@ spring:
   application:
     name: mini-itsm
   datasource:
-    url: jdbc:postgresql://localhost:5432/miniitsm
-    username: miniitsm
-    password: miniitsm
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/miniitsm}
+    username: ${DB_USERNAME:miniitsm}
+    password: ${DB_PASSWORD:miniitsm}
   jpa:
     open-in-view: false
     hibernate:
       ddl-auto: validate
-  mvc:
-    problemdetails:
-      enabled: true

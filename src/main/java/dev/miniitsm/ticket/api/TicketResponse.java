@@ -3,8 +3,8 @@ package dev.miniitsm.ticket.api;
 import java.time.Instant;
 import java.util.UUID;
 
+import dev.miniitsm.ticket.application.TicketView;
 import dev.miniitsm.ticket.domain.TicketStatus;
-import dev.miniitsm.ticket.domain.TicketView;
 
 record TicketResponse(UUID id, String title, String description, TicketStatus status, Instant createdAt) {
 

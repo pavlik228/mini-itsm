@@ -1,8 +1,10 @@
-package dev.miniitsm.ticket.domain;
+package dev.miniitsm.ticket.application;
 
 import java.time.Clock;
 import java.util.UUID;
 
+import dev.miniitsm.ticket.domain.Ticket;
+import dev.miniitsm.ticket.domain.TicketNotFoundException;
 import dev.miniitsm.ticket.persistence.TicketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
