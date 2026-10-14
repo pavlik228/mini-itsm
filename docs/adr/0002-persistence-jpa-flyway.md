@@ -1,6 +1,6 @@
 # 0002. Persistence: Spring Data JPA и Flyway
 
-- Статус: Proposed
+- Статус: Accepted
 - Дата: 2026-10-14
 
 ## Контекст
